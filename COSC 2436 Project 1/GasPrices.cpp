@@ -2,27 +2,32 @@
 #include <iostream>
 #include <string>
 
-double pricePerYear(std::string);
+#include "Average.h"
 
 int main() {
     std::string line;
+    int input = 1;
+    bool tryAgain = true;
+    Average GasPrices;
 
-    std::ifstream file("GasPrices-1.txt");
+    // while (tryAgain) {
+    //     try {
+    //         std::cout << "Average Price per Year(1), Average Price per Month(2), Highest and Lowest Prices per year(3),\nList of Prices, Lowest to Highest(4), List of Prices, Highest to Lowest(5). Enter a number: ";
+    //         std::cin >> input;
+    //         if (input < 0 || input > 5) {
+    //             throw input;
+    //         } else {
+    //             tryAgain = false;
+    //         }
+    //     } catch (int) {
+    //         std::cout << "Invalid";
+    //     }
+    // }
 
-    while (!file.eof()) {
-        std::getline(file, line);
+    GasPrices.setPricesMonth();
+    GasPrices.displayPrices();
+    GasPrices.setPricesYear();
+    GasPrices.displayPrices();
 
-        pricePerYear(line);
-    }
     return 0;
-}
-
-double pricePerYear(std::string line) {
-    int year;
-
-    year = stoi(line.substr(6, 9));
-
-    std::cout << year << std::endl;
-
-    return 1.00;
 }
